@@ -6,6 +6,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 import lombok.Data;
 
@@ -18,9 +20,18 @@ public class Producto {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String nombre;
-    private String descripcion;
+    @NotNull
     private int piezas;
+	
+
+	@NotNull
+    @Size(max = 100)
+	private String nombre;
+	
+	@NotNull
+    @Size(max = 200)
+	private String descripcion;
+	
     
     public void setNombre(String nombre) {
     	this.nombre = nombre;
