@@ -3,5 +3,5 @@ package com.uacm.dTamarindo.modelo;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface UsuarioRepository extends JpaRepository<Usuario, Long>{
-	Boolean validarUsuario();
+	//Boolean validarUsuario();
 }

@@ -17,7 +17,7 @@ import lombok.Data;
 @Entity
 @Data
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-public class InventarioGeneral {
+public class Inventario {
 	 
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,15 +26,13 @@ public class InventarioGeneral {
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "invoice")
 	private static HashMap<String, Producto> productos = new HashMap<String, Producto>();
 
-	
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "invoice")
-	private static HashMap<String, Pedido> pedidos = new HashMap<String, Pedido>();
+
 
 	public Long getId() {
 		return id;
 	}
 	
-	public boolean altaProducto(Producto producto) {
+	public static boolean altaProducto(Producto producto) {
 		boolean exito = false;
 		if(producto != null) {
 			productos.put(producto.getNombre(), producto);
@@ -43,7 +41,7 @@ public class InventarioGeneral {
 		return exito;
 	}
 	
-	public boolean bajaProducto(Producto producto) {
+	public static boolean bajaProducto(Producto producto) {
 		boolean exito = false;
 		
 		if(producto != null)
@@ -52,7 +50,7 @@ public class InventarioGeneral {
 		return exito;
 	}
 	
-	public boolean modificaProducto(Producto producto) {
+	public static boolean modificaProducto(Producto producto) {
 		boolean exito = false;
 		if(producto != null) {
 			productos.put(producto.getNombre(), producto);
@@ -61,7 +59,7 @@ public class InventarioGeneral {
 		return exito;
 	}
 	
-	public Optional<Producto> buscaProducto(String nomProducto){
+	public static Optional<Producto> buscaProducto(String nomProducto){
 		Optional<Producto> optProducto = Optional.empty();
 		
 		if(productos.get(nomProducto) != null)
@@ -70,40 +68,6 @@ public class InventarioGeneral {
 		return optProducto;
 	}
 	
-	public boolean altaPedido(Pedido pedido) {
-		boolean exito = false;
-		if(pedido != null) {
-			pedidos.put(pedido.getId().toString(), pedido);
-			exito = true;
-		}
-		return exito;
-	}
-	
-	public boolean bajaPedido(Pedido pedido) {
-		boolean exito = false;
-		
-		if(pedido != null)
-			exito = pedidos.remove(pedido.getId().toString(), pedido);
-		
-		return exito;
-	}
-	
-	public boolean modificaPedido(Pedido pedido) {
-		boolean exito = false;
-		if(pedido != null) {
-			pedidos.put(pedido.getId().toString(), pedido);
-			exito = true;
-		}
-		return exito;
-	}
 
-	public Optional<Pedido> buscaPedido(String idPedido){
-		Optional<Pedido> optPedido = Optional.empty();
-		
-		if(productos.get(idPedido) != null)
-			optPedido = Optional.of(pedidos.get(idPedido));
-		
-		return optPedido;
-	}
 		
 }
