@@ -1,5 +1,7 @@
 package com.uacm.dTamarindo.modelo;
 
+import java.util.regex.Pattern;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -8,6 +10,8 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+
+import com.uacm.dTamarindo.exceps.ExcepcionUsuario;
 
 import lombok.Data;
 
@@ -55,16 +59,22 @@ public class Usuario {
 			return password;
 	}
 	
-	public void setRol(String rol) {
-    	this.rol = rol;
+	public void setRol(String rol) throws ExcepcionUsuario {
+		if(compruebaCadena(rol))
+			this.rol = rol;
+		else 
+			throw new ExcepcionUsuario("Un rol sólo incluye letras y espacios");
 	}
 	 
 	public String getRol() {
 			return rol;
-	}
+	}	    
 	
-	    
-	   
-	    
+	private boolean compruebaCadena(String s) {
+		boolean esCadena =  
+				Pattern.matches("[A-Za-z\\u00F1\\u00FA\\u00E1\\u00E9\\u00ED\\u00E3"
+						+ "\\u00C1\\u00C9\\u00CD\\u00D3\\u00DA\\u00D1\s]*", s);
+		return esCadena;
+	}
 		
 }

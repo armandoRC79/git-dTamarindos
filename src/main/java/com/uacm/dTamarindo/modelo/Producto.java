@@ -9,6 +9,8 @@ import javax.persistence.InheritanceType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import com.uacm.dTamarindo.exceps.ExcepcionProducto;
+
 import lombok.Data;
 
 @Entity
@@ -41,8 +43,21 @@ public class Producto {
     	this.descripcion = descripcion;
     }
     
-    public void disminuyePiezas(int piezas) {
-    		this.piezas = piezas;
+    public void disminuyePiezas(int piezas) throws ExcepcionProducto {
+    	if(piezas <= this.piezas)
+    		if(piezas > 0)
+    			this.piezas = this.piezas-piezas;
+    		else 
+    			throw new ExcepcionProducto("Asegurese de que la cantidad no sea negativa");
+    	else
+    		throw new ExcepcionProducto("El numero de piezas requeridas excede la existencia");
+    }
+    
+    public void aumentaPiezas(int piezas) throws ExcepcionProducto {
+    	if(piezas > 0)
+    		this.piezas = this.piezas + piezas;
+    	else
+    		throw new ExcepcionProducto("No se admiten cantidades negativas de piezas");
     }
     
 	public Long getId() {
