@@ -71,8 +71,7 @@ public class Usuario {
 	}	    
 	
 	private boolean compruebaCadena(String s) {
-		boolean esCadena = Pattern.matches("[A-Za-z\\u00F1\\u00FA\\u00E1\\u00E9"
-				+ "\\u00ED\\u00E3\\u00C1\\u00C9\\u00CD\\u00D3\\u00DA\\u00D1\s]*", s);
+		boolean esCadena = Pattern.matches("[A-Za-z\\u00F1\\u00FA\\u00E1\\u00E9\\u00ED\\u00E3\\u00C1\\u00C9\\u00CD\\u00D3\\u00DA\\u00D1\\s]*", s);
 		return esCadena;
 	}
 		
