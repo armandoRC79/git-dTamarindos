@@ -1,107 +1,77 @@
 package com.uacm.dTamarindo.modelo;
 
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+
+import org.hibernate.annotations.ManyToAny;
+
+
 public class Producto_pedido {
-	
-	/*
-	 @Entity(name = "Profesormodulo")
-@Table(name = "profesormodulo")
-@IdClass(ProfesormoduloId.class)
-public class Profesormodulo {
+	@Id
+    private Long idProducto;
 
     @Id
-    private Long idProfesor;
+    private Long idPedido;
 
-    @Id
-    private Long idModulo;
+    private int piezas;
 
-    private Date fecha;
+    @ManyToAny
+    @JoinColumn(name = "idProducto", referencedColumnName = "id", nullable = false, updatable = false)
+    private Producto produto;
 
-    @ManyToOne
-    @JoinColumn(name = "idProfesor", referencedColumnName = "id", insertable = false, updatable = false)
-    private Profesor profesor;
+    @ManyToAny
+    @JoinColumn(name = "idPedido", referencedColumnName = "id", nullable = false, updatable = false)
+    private Pedido pedido;
 
-    @ManyToOne
-    @JoinColumn(name = "idModulo", referencedColumnName = "id", insertable = false, updatable = false)
-    private Modulo modulo;
-
-    public Profesormodulo() {
+    public Producto_pedido() {
 
     }
-
-    public Profesormodulo(Long idProfesor, Long idModulo, Date fecha) {
-        this.idProfesor = idProfesor;
-        this.idModulo = idModulo;
-        this.fecha = fecha;
+    
+    public Producto_pedido(Long idProducto, Long idPedido, int piezas) {
+        this.idProducto = idProducto;
+        this.idPedido = idPedido;
+        this.piezas = piezas;
     }
 
-    public Long getIdProfesor() {
-        return idProfesor;
-    }
+	public Long getIdProducto() {
+		return idProducto;
+	}
 
-    public void setIdProfesor(Long idProfesor) {
-        this.idProfesor = idProfesor;
-    }
+	public void setIdProducto(Long idProducto) {
+		this.idProducto = idProducto;
+	}
 
-    public Long getIdModulo() {
-        return idModulo;
-    }
+	public Long getIdPedido() {
+		return idPedido;
+	}
 
-    public void setIdModulo(Long idModulo) {
-        this.idModulo = idModulo;
-    }
+	public void setIdPedido(Long idPedido) {
+		this.idPedido = idPedido;
+	}
 
-    public Date getFecha() {
-        return fecha;
-    }
+	public int getPiezas() {
+		return piezas;
+	}
 
-    public void setFecha(Date fecha) {
-        this.fecha = fecha;
-    }
+	public void setPiezas(int piezas) {
+		this.piezas = piezas;
+	}
 
-    public Profesor getProfesor() {
-        return profesor;
-    }
+	public Producto getProduto() {
+		return produto;
+	}
 
-    public void setProfesor(Profesor profesor) {
-        this.profesor = profesor;
-    }
+	public void setProduto(Producto produto) {
+		this.produto = produto;
+	}
 
-    public Modulo getModulo() {
-        return modulo;
-    }
+	public Pedido getPedido() {
+		return pedido;
+	}
 
-    public void setModulo(Modulo modulo) {
-        this.modulo = modulo;
-    }
+	public void setPedido(Pedido pedido) {
+		this.pedido = pedido;
+	}
 
-
-
-    @Override
-    public String toString() {
-        return "Profesormodulo [idProfesor=" + idProfesor + ", idModulo=" + idModulo + ", fecha=" + fecha
-                + ", profesor=" + profesor + ", modulo=" + modulo + "]";
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-
-        if (o == null || getClass() != o.getClass())
-            return false;
-
-        Profesormodulo that = (Profesormodulo) o;
-        return Objects.equals(profesor, that.profesor) &&
-                Objects.equals(modulo, that.modulo);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(profesor, modulo);
-    }
-
-}
-ProfesormoduloId:
-	 */
-	
 
 }
